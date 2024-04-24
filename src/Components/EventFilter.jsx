@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DatePicker, List, Divider, Space } from 'antd';
 
 const EventFilter = ({ data }) => {
-  const [selectedDate, setSelectedDate] = useState('');
+  const [, setSelectedDate] = useState('');
   const [filteredEvents, setFilteredEvents] = useState([]);
     // console.log(data)
   const handleDateChange = (date) => {
