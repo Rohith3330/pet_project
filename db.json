@@ -54,9 +54,17 @@
       ]
     },
     {
-      "id": "a1d2",
-      "day": "2024-04-23T18:30:00.000Z",
+      "id": "439b",
+      "day": "2024-04-24T04:11:02.700Z",
       "events": [
+        {
+          "title": "Foosball",
+          "time": "9:41 am",
+          "users": [
+            "Eashwar",
+            "Rohith"
+          ]
+        },
         {
           "title": "TT",
           "time": "12:22 pm",
@@ -76,6 +84,11 @@
     {
       "username": "ro@gmail.com",
       "name": "ro",
+      "password": "1234"
+    },
+    {
+      "username": "ea@gmail.com",
+      "name": "Eashwar",
       "password": "1234"
     }
   ]
