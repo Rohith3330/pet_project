@@ -40,7 +40,7 @@ const AddEvent = () => {
   );
   useEffect(() => {
     if (userData && !isLoading && !isError) {
-      console.log(userData)
+      // console.log(userData)
       const list=[]
       userData.data.forEach(e=>{
         const x={ 

@@ -1,44 +1,56 @@
 import React, { useState } from 'react';
+import { DatePicker, List, Divider, Space } from 'antd';
 
 const EventFilter = ({ data }) => {
-    const [selectedDate, setSelectedDate] = useState('');
-    const [filteredEvents, setFilteredEvents] = useState([]);
-
-    const handleDateChange = (e) => {
-        setSelectedDate(e.target.value);
-        const filtered = data.filter(entry => {
-            const entryDate = new Date(entry.day).toISOString().slice(0, 10);
-            return entryDate === e.target.value;
-        });
-        setFilteredEvents(filtered);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [filteredEvents, setFilteredEvents] = useState([]);
+    // console.log(data)
+  const handleDateChange = (date) => {
+    if(!date){
+        setFilteredEvents([])
+        return;
     };
+    setSelectedDate(date.format('YYYY-MM-DD'));
+    const filtered = data.filter((entry) => {
+        const entryDate = new Date(entry.day).toISOString().slice(0, 10);
+        console.log(date.format('YYYY-MM-DD'),entryDate)
+      return entryDate === date.format('YYYY-MM-DD');
+    });
+    setFilteredEvents(filtered);
+  };
 
-    return (
-        <div>
-            <label htmlFor="date">Select Date:</label>
-            <input type="date" id="date" value={selectedDate} onChange={handleDateChange} />
-            {filteredEvents.length > 0 && (
-                <div>
-                    <h2>Events on {selectedDate}:</h2>
-                    <ul>
-                        {filteredEvents.map(entry => (
-                            <li key={entry.id}>
-                                <h3>{new Date(entry.day).toLocaleDateString()}</h3>
-                                <ul>
-                                    {entry.events.map(event => (
-                                        <li key={event.title}>
-                                            <p>{event.title} - {event.time}</p>
-                                            <p>Users: {event.users.join(', ')}</p>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
-    );
+  return (
+    <div>
+        <>
+            <p>Filter Events by Date</p>
+        </>
+      <Space direction="vertical">
+        <DatePicker onChange={handleDateChange} />
+      </Space>
+      {filteredEvents.length > 0 && (
+        <List
+          itemLayout="vertical"
+          dataSource={filteredEvents}
+          renderItem={(event) => (
+            <List.Item>
+              <List.Item.Meta
+                title={`Events on ${new Date(event.day).toLocaleDateString()}`}
+              />
+              <Divider plain />
+              {event.events.map((event) => (
+                <List.Item>
+                  <List.Item.Meta
+                    title={event.title}
+                    description={`${event.time} - Attendees: ${event.users.join(', ')}`}
+                  />
+                </List.Item>
+              ))}
+            </List.Item>
+          )}
+        />
+      )}
+    </div>
+  );
 };
 
 export default EventFilter;

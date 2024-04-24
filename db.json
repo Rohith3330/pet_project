@@ -21,26 +21,6 @@
       ]
     },
     {
-      "id": "378b",
-      "day": "2024-04-22T06:35:14.000Z",
-      "events": [
-        {
-          "title": "Table Tennis",
-          "time": "12:05 pm",
-          "users": [
-            "ro"
-          ]
-        },
-        {
-          "title": "Table Tennis",
-          "time": "5:00 pm",
-          "users": [
-            "ro"
-          ]
-        }
-      ]
-    },
-    {
       "id": "3a09",
       "day": "2024-03-12T18:30:00.000Z",
       "events": [
@@ -79,17 +59,20 @@
     {
       "username": "rohith@gmail.com",
       "name": "Rohith",
-      "password": "1234"
+      "password": "1234",
+      "id": "e4f2"
     },
     {
       "username": "ro@gmail.com",
       "name": "ro",
-      "password": "1234"
+      "password": "1234",
+      "id": "5d7f"
     },
     {
       "username": "ea@gmail.com",
       "name": "Eashwar",
-      "password": "1234"
+      "password": "1234",
+      "id": "a4ed"
     }
   ]
 }

@@ -26,11 +26,14 @@ export default function BarsDataset({users,params}) {
     })
 
   return (
+    <div>
+    <h2>Number of Events per month:</h2>
     <BarChart
       dataset={[...params]}
       xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
       series={[...series]}
       {...chartSetting}
     />
+    </div>
   );
 }
