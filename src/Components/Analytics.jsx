@@ -1,21 +1,16 @@
 import React from 'react';
-import axios from 'axios';
 import { useQuery } from 'react-query';
 import { useState } from 'react';
 import BasicPie from './PieChart';
 import BarsDataset from './BarGraph';
+import EventFilter from './EventFilter';
+import { fetchevents } from '../API/api';
 
 const Analytics = () => {
     const [PieData, setPieData] = useState([])
     const [users, setusers] = useState([])
     const [Dataset, setDataset] = useState([])
-    const fetchevents = async () => {
-        const response = await axios.get(`http://localhost:4000/Events`);
-        return {
-          data: response.data
-        };
-      };
-      useQuery(
+      const {data:eventData}=useQuery(
         ['event'],
         () => fetchevents(),
         {
@@ -74,6 +69,7 @@ const Analytics = () => {
         <div>
             <BasicPie params={PieData}/>
             <BarsDataset users={users} params={Dataset}/>
+            <EventFilter data={eventData.data}/>
         </div>
     );
 };

@@ -3,21 +3,14 @@ import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import 'rsuite/Calendar/styles/index.css';
 import { useQuery} from 'react-query';
 import AddEvent from './AddEvent';
-import axios from 'axios';
 import { useState } from 'react';
-
+import { fetchevents } from '../API/api';
 
 
 const Calendarbox = ({getuser}) => {
   const [User] = useState(getuser())
   const [EventMap,setEventMap]=useState(new Map())
 
-  const fetchevents = async () => {
-    const response = await axios.get(`http://localhost:4000/Events`);
-    return {
-      data: response.data
-    };
-  };
   const { data: eventData } = useQuery(
     ['event'],
     () => fetchevents(),
@@ -39,7 +32,7 @@ const Calendarbox = ({getuser}) => {
       const events= EventMap.get(date.toDateString())
       const filtered_events=events.filter((e)=>{
         if(e.users.includes(User)){
-          console.log(e.users,User)
+          // console.log(e.users,User)
           return true
         }
         return false;
