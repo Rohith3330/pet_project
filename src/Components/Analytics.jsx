@@ -15,7 +15,7 @@ const Analytics = () => {
           data: response.data
         };
       };
-      const { data: eventData } = useQuery(
+      useQuery(
         ['event'],
         () => fetchevents(),
         {
@@ -65,9 +65,7 @@ const Analytics = () => {
             
                 return result;
             }
-            
-            
-              setDataset(generateUserCountByMonth(eventData.data))              
+            setDataset(generateUserCountByMonth(eventData.data))              
             setPieData(arr)
           }
         }
