@@ -3,11 +3,14 @@ import { useState } from 'react';
 import { Button,Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { fetchUsers } from '../API/api'
-import { useQuery} from 'react-query';
-
+import { useQuery,useQueryClient,useMutation} from 'react-query';
+import {auth,provider}from '../config'
+import {signInWithPopup} from 'firebase/auth'
+import axios from 'axios';
 
 const LoginPage = ({ onLogin }) => {
   const navigate=useNavigate();
+  const queryClient=useQueryClient();
   const [Creds, setCreds] = useState(true);
   const { data: userData, isLoading, isError } = useQuery(
     ['Users' ],
@@ -16,27 +19,60 @@ const LoginPage = ({ onLogin }) => {
       keepPreviousData: true,
     }
   );
+  const addUserMutation = useMutation(
+    newPostData =>
+      axios.post('http://localhost:4000/Users', newPostData),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('Users');
+      },
+    }
+  );
+
   const OnFinish = async (values) => {
     
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
     if(userData){
-      userData.data.forEach(element => {
-        if(element.username===values.username && element.password===values.password){
-          onLogin(element.name)
+      const matchedUser = userData.data.find(element => {
+        return element.username === values.username && element.password === values.password;
+      });
+      
+        if(matchedUser){
+          onLogin(matchedUser.name)
           navigate('/home')
           setCreds(true)
         }
         else{
           setCreds(false);
         }
-      });
     }
     
   };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+  const handleclick=()=>{
+    signInWithPopup(auth,provider).then((data)=>{
+      console.log(data.user)
+      onLogin(data.user.displayName)
+      if(userData){
+        const matchedUser = userData.data.find(element => {
+          return element.name === data.user.displayName;
+        });
+        console.log(matchedUser)
+        if(matchedUser){
+          setCreds(false);
+        }
+        else{
+          onLogin(data.user.displayName)
+          addUserMutation.mutate({username:data.user.email,name:data.user.displayName,password:data.user.uid})
+          navigate('/home')
+          setCreds(true)
+        }
+      }
+    })
+  }
   
   return(
   <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '100vh' ,backgroundColor:'lightblue'}}>
@@ -95,6 +131,7 @@ const LoginPage = ({ onLogin }) => {
     </Form.Item>
   </Form>
   {!Creds && <div>Username or Password is incorrect</div>}
+  <Button onClick={handleclick}>Sign in with Google</Button>
   </div>
 );
 }

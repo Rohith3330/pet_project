@@ -53,6 +53,20 @@
           ]
         }
       ]
+    },
+    {
+      "id": "3d9a",
+      "day": "2024-04-25T08:41:14.400Z",
+      "events": [
+        {
+          "title": "Snooker",
+          "time": "2:11 pm",
+          "users": [
+            "Rohith",
+            "Eashwar"
+          ]
+        }
+      ]
     }
   ],
   "Users": [
@@ -73,6 +87,12 @@
       "name": "Eashwar",
       "password": "1234",
       "id": "a4ed"
+    },
+    {
+      "id": "115a",
+      "username": "krohithmanikanta3@gmail.com",
+      "name": "Kunchala Rohith Manikanta",
+      "password": "KpuSY1KSckQWx31zUUWnyOZKgD82"
     }
   ]
 }
