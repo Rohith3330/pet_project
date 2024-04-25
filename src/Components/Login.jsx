@@ -53,25 +53,27 @@ const LoginPage = ({ onLogin }) => {
     console.log('Failed:', errorInfo);
   };
   const handleclick=()=>{
-    signInWithPopup(auth,provider).then((data)=>{
-      console.log(data.user)
-      onLogin(data.user.displayName)
-      if(userData){
-        const matchedUser = userData.data.find(element => {
-          return element.name === data.user.displayName;
-        });
-        console.log(matchedUser)
+    try{
+      signInWithPopup(auth,provider).then((data)=>{
+        console.log(data.user)
         onLogin(data.user.displayName)
-        navigate('/home')
-        setCreds(true);
-        if(!matchedUser){
+        if(userData){
+          const matchedUser = userData.data.find(element => {
+            return element.name === data.user.displayName;
+          });
+          // console.log(matchedUser)
+          if(!matchedUser){
+            addUserMutation.mutate({username:data.user.email,name:data.user.displayName})
+          }
           onLogin(data.user.displayName)
-          addUserMutation.mutate({username:data.user.email,name:data.user.displayName})
           navigate('/home')
-          setCreds(true)
+          setCreds(true);
         }
-      }
-    })
+      })
+    }
+    catch{
+
+    }
   }
   
   return(
@@ -129,9 +131,17 @@ const LoginPage = ({ onLogin }) => {
         Submit
       </Button>
     </Form.Item>
+    <Form.Item
+     wrapperCol={{
+      offset: 8,
+      span: 16,
+    }}
+    >
+    <Button onClick={handleclick}>Sign in with Google</Button>
+    </Form.Item>
   </Form>
   {!Creds && <div>Username or Password is incorrect</div>}
-  <Button onClick={handleclick}>Sign in with Google</Button>
+  
   </div>
 );
 }

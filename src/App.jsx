@@ -7,6 +7,9 @@ import { Layout, Menu, theme, Button, Flex} from 'antd';
 import Routeslist from './Components/Routes_list';
 import { User } from './user_States/Atoms';
 import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './config';
 const { Header, Content, Footer, Sider } = Layout;
 
 const App = () => {
@@ -24,10 +27,21 @@ const navigate=useNavigate();
     label:index===0?'Home':index===1?'Analytics':'Search',
     onClick:index===0?()=>navigate('/home'):index===1?()=>{navigate('/analytics')}:()=>{navigate('/Search')}
   }));
-  const [user, setUser] = useRecoilState(User);
+  const [username, setUser] = useRecoilState(User);
   const handleLogout=()=>{
     setUser(null);
   }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (username) {
+        setUser(user.displayName);
+        navigate('/home')
+      } else setUser(null);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
  
   return (
     <Layout hasSider>
@@ -64,7 +78,7 @@ const navigate=useNavigate();
         }}
       >
         <div className="demo-logo" />
-        {user && <Menu
+        {username && <Menu
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={['1']} 
@@ -75,7 +89,7 @@ const navigate=useNavigate();
           }}
         />}
         <Flex gap='medium'>
-        {user && <Button type="primary" 
+        {username && <Button type="primary" 
         onClick={()=>{
           handleLogout();
           navigate('/')
@@ -96,7 +110,7 @@ const navigate=useNavigate();
               borderRadius: borderRadiusLG,
             }}
           >
-            {user && <h2>Welcome {user} !</h2>}
+            {username && <h2>Welcome {username} !</h2>}
             <Routeslist/>
           </div>
         </Content>
