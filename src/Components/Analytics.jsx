@@ -3,14 +3,13 @@ import { useQuery } from 'react-query';
 import { useState } from 'react';
 import BasicPie from './PieChart';
 import BarsDataset from './BarGraph';
-import EventFilter from './EventFilter';
 import { fetchevents } from '../API/api';
 
 const Analytics = () => {
     const [PieData, setPieData] = useState([])
     const [users, setusers] = useState([])
     const [Dataset, setDataset] = useState([])
-      const {data:eventData}=useQuery(
+      useQuery(
         ['event'],
         () => fetchevents(),
         {
