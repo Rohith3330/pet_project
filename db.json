@@ -55,9 +55,17 @@
       ]
     },
     {
-      "id": "3d9a",
-      "day": "2024-04-25T08:41:14.400Z",
+      "id": "9cf0",
+      "day": "2024-04-25T10:25:14.500Z",
       "events": [
+        {
+          "title": "Some Event",
+          "time": "3:55 pm",
+          "users": [
+            "Kunchala Rohith Manikanta",
+            "Rohith"
+          ]
+        },
         {
           "title": "Snooker",
           "time": "2:11 pm",
@@ -93,6 +101,12 @@
       "username": "krohithmanikanta3@gmail.com",
       "name": "Kunchala Rohith Manikanta",
       "password": "KpuSY1KSckQWx31zUUWnyOZKgD82"
+    },
+    {
+      "id": "4bc5",
+      "username": "rohithmanikanta.kunchala@beautifulcode.in",
+      "name": "Rohith Manikanta Kunchala",
+      "password": "BI3rD4A0KxXjfeFVC5A5x9YeBgb2"
     }
   ]
 }

@@ -61,10 +61,10 @@ const LoginPage = ({ onLogin }) => {
           return element.name === data.user.displayName;
         });
         console.log(matchedUser)
-        if(matchedUser){
-          setCreds(false);
-        }
-        else{
+        onLogin(data.user.displayName)
+        navigate('/home')
+        setCreds(true);
+        if(!matchedUser){
           onLogin(data.user.displayName)
           addUserMutation.mutate({username:data.user.email,name:data.user.displayName,password:data.user.uid})
           navigate('/home')
