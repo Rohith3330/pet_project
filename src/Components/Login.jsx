@@ -66,7 +66,7 @@ const LoginPage = ({ onLogin }) => {
         setCreds(true);
         if(!matchedUser){
           onLogin(data.user.displayName)
-          addUserMutation.mutate({username:data.user.email,name:data.user.displayName,password:data.user.uid})
+          addUserMutation.mutate({username:data.user.email,name:data.user.displayName})
           navigate('/home')
           setCreds(true)
         }
