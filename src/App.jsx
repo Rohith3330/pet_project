@@ -96,6 +96,7 @@ const navigate=useNavigate();
               borderRadius: borderRadiusLG,
             }}
           >
+            {user && <h2>Welcome {user} !</h2>}
             <Routeslist/>
           </div>
         </Content>
