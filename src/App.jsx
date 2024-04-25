@@ -1,14 +1,12 @@
-import React, {useState}from 'react';
-import { Routes, Route,Navigate } from 'react-router-dom';
+import React from 'react';
 import './App.css';
-import LoginPage from './Components/Login';
-import Nomatch from './Components/Nomatch';
-import Analytics from './Components/Analytics';
 import logo from './logo.svg';
 import { useNavigate } from 'react-router-dom';
-import {BarChartOutlined,UserOutlined } from '@ant-design/icons';
+import {BarChartOutlined,UserOutlined,FileSearchOutlined} from '@ant-design/icons';
 import { Layout, Menu, theme, Button, Flex} from 'antd';
-import Calendarbox from './Components/Calendar_box';
+import Routeslist from './Components/Routes_list';
+import { User } from './user_States/Atoms';
+import { useRecoilState } from 'recoil';
 const { Header, Content, Footer, Sider } = Layout;
 
 const App = () => {
@@ -19,24 +17,16 @@ const navigate=useNavigate();
   const items = [
     UserOutlined,
     BarChartOutlined,
+    FileSearchOutlined
   ].map((icon, index) => ({
     key: String(index + 1),
     icon: React.createElement(icon),
-    label:index===0?'Home':'Analytics',
-    onClick:index===0?()=>navigate('/home'):()=>{navigate('/analytics')}
+    label:index===0?'Home':index===1?'Analytics':'Search',
+    onClick:index===0?()=>navigate('/home'):index===1?()=>{navigate('/analytics')}:()=>{navigate('/Search')}
   }));
-  const [User, setUser] = useState(null);
-  const handleLogin=(user)=>{
-    setUser(user);
-  }
+  const [user, setUser] = useRecoilState(User);
   const handleLogout=()=>{
     setUser(null);
-  }
-  const ProtectedRoute = ({ children }) => {
-    return User ? children : <Navigate to="/" replace />;
-  };
-  const getUser=()=>{
-    return User
   }
  
   return (
@@ -85,7 +75,7 @@ const navigate=useNavigate();
           }}
         />
         <Flex gap='medium'>
-        {User && <Button type="primary" 
+        {user && <Button type="primary" 
         onClick={()=>{
           handleLogout();
           navigate('/')
@@ -106,12 +96,7 @@ const navigate=useNavigate();
               borderRadius: borderRadiusLG,
             }}
           >
-            <Routes>
-        <Route path="/home" element={<ProtectedRoute><Calendarbox getuser={getUser}/></ProtectedRoute>}/>
-        <Route path='/analytics' element={<ProtectedRoute> <Analytics/></ProtectedRoute>}/>
-        <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
-        <Route path='*' element={<Nomatch/>}/>
-      </Routes>
+            <Routeslist/>
           </div>
         </Content>
 
