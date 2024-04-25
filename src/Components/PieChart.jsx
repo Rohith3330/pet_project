@@ -18,7 +18,7 @@ export default function BasicPie({params}) {
             endAngle: 360,
           },
         ]}
-        width={400}
+        width={650}
         height={400}
       />
       

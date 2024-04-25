@@ -8,11 +8,11 @@ const chartSetting = {
       label: 'Events',
     },
   ],
-  width: 500,
+  width: 800,
   height: 300,
   sx: {
     [`.${axisClasses.left} .${axisClasses.label}`]: {
-      transform: 'translate(-20px, 0)',
+      transform: 'translate(0, 0)',
     },
   },
 };

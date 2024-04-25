@@ -64,7 +64,7 @@ const navigate=useNavigate();
         }}
       >
         <div className="demo-logo" />
-        <Menu
+        {user && <Menu
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={['1']} 
@@ -73,7 +73,7 @@ const navigate=useNavigate();
             flex: 1,
             minWidth: 0,
           }}
-        />
+        />}
         <Flex gap='medium'>
         {user && <Button type="primary" 
         onClick={()=>{
@@ -106,7 +106,7 @@ const navigate=useNavigate();
             textAlign: 'center',
           }}
         >
-          Beautiful code ©{new Date().getFullYear()} Created by Ro
+          Beautiful code ©{new Date().getFullYear()} Created by Rohith
         </Footer>
       </Layout>
     </Layout>

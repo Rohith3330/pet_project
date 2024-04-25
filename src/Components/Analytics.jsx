@@ -66,12 +66,9 @@ const Analytics = () => {
         }
       );
     return (
-        <div>
-            <div style={{display:"flex",flexDirection:"row",width:"100%",justifyContent:"space-evenly"}}>
-                <BasicPie params={PieData}/>
-                <BarsDataset users={users} params={Dataset}/>
-            </div>
-            <EventFilter data={eventData.data}/>
+        <div style={{display:"flex",flexDirection:"row",width:"100%",justifyContent:"space-evenly"}}>
+            <BasicPie params={PieData}/>
+            <BarsDataset users={users} params={Dataset}/>
         </div>
     );
 };
