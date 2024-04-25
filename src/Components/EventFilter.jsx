@@ -3,12 +3,14 @@ import { DatePicker, List, Divider, Space } from 'antd';
 
 const EventFilter = ({ data }) => {
   const [, setSelectedDate] = useState('');
+  const [Noevents, setNoevents] = useState(false)
   const [filteredEvents, setFilteredEvents] = useState([]);
     // console.log(data)
   const handleDateChange = (date) => {
     if(!date){
+        setNoevents(false);
         setFilteredEvents([])
-        return;
+        return ;
     };
     setSelectedDate(date.format('YYYY-MM-DD'));
     const filtered = data.filter((entry) => {
@@ -17,6 +19,12 @@ const EventFilter = ({ data }) => {
       return entryDate === date.format('YYYY-MM-DD');
     });
     setFilteredEvents(filtered);
+    if(filtered.length===0){
+        setNoevents(true)
+    }
+    else {
+        setNoevents(false);
+    }
   };
 
   return (
@@ -49,6 +57,9 @@ const EventFilter = ({ data }) => {
           )}
         />
       )}
+      {
+        Noevents && <h2>No events found on this Date</h2>
+      }
     </div>
   );
 };
