@@ -41,7 +41,7 @@ const navigate=useNavigate();
     return () => {
       unsubscribe();
     };
-  });
+  }, [username]);
  
   return (
     <Layout hasSider>
