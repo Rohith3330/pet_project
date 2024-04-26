@@ -138,7 +138,7 @@ const LoginPage = ({ onLogin }) => {
       span: 16,
     }}
     >
-    <Button onClick={handleclick}><GoogleOutlined/>Sign in with Google </Button>
+    <Button onClick={handleclick}>Sign in with Google </Button>
     </Form.Item>
   </Form>
   {!Creds && <div>Username or Password is incorrect</div>}
