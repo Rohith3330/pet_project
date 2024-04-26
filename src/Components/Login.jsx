@@ -77,7 +77,7 @@ const LoginPage = ({ onLogin }) => {
   }
   
   return(
-  <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '100vh' ,backgroundColor:'lightblue'}}>
+  <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '78vh' ,backgroundColor:'lightblue'}}>
   <Form
     name="basic"
     labelCol={{
