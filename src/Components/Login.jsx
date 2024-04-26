@@ -79,6 +79,7 @@ const LoginPage = ({ onLogin }) => {
   }
   
   return(
+    <div>
   <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '78vh' ,backgroundColor:'lightblue'}}>
   <Form
     name="basic"
@@ -98,6 +99,9 @@ const LoginPage = ({ onLogin }) => {
     onFinishFailed={onFinishFailed}
     autoComplete="off"
   >
+    <Form.Item>
+      <h2 style={{paddingLeft:'160px'}}>Login</h2>
+    </Form.Item>
     <Form.Item
       label="Username"
       name="username"
@@ -144,6 +148,7 @@ const LoginPage = ({ onLogin }) => {
   </Form>
   {!Creds && <div>Username or Password is incorrect</div>}
   
+  </div>
   </div>
 );
 }
