@@ -65,7 +65,7 @@ const Analytics = () => {
         }
       );
     return (
-        <div style={{display:"flex",flexDirection:"row",width:"100%",justifyContent:"space-evenly"}}>
+        <div style={{display:"flex",flexDirection:"row",width:"100%",justifyContent:"space-evenly",flexWrap:'wrap'}}>
             <BasicPie params={PieData}/>
             <BarsDataset users={users} params={Dataset}/>
         </div>

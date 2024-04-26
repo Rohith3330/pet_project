@@ -45,11 +45,11 @@ const navigate=useNavigate();
   }, [username]);
  
   return (
-    <Layout hasSider>
+    <Layout hasSider style={{display:"flex",flexWrap:"wrap"}}>
       <Sider
         style={{
           overflow: 'auto',
-          height: '100vh',
+          height: '100%',
           position: 'fixed',
           left: 0,
           top: 0,

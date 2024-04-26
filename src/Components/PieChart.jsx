@@ -3,7 +3,7 @@ import { PieChart } from '@mui/x-charts/PieChart';
 
 export default function BasicPie({params}) {
   return (
-    <div>
+    <div style={{display:"flex",flexDirection:"column",flexWrap:"wrap"}}>
     <h2>Total Events</h2>
     
       <PieChart

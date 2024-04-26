@@ -26,7 +26,7 @@ export default function BarsDataset({users,params}) {
     })
 
   return (
-    <div>
+    <div style={{display:"flex",flexDirection:"column",flexWrap:"wrap"}}>
     <h2>Number of Events per month:</h2>
     <BarChart
       dataset={[...params]}
