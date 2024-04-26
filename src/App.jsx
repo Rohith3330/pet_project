@@ -8,8 +8,8 @@ import Routeslist from './Components/Routes_list';
 import { User } from './user_States/Atoms';
 import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
-import { onAuthStateChanged,signOut } from 'firebase/auth';
-import { auth, provider } from './config';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './config';
 const { Header, Content, Footer, Sider } = Layout;
 
 const App = () => {
@@ -29,14 +29,11 @@ const navigate=useNavigate();
   }));
   const [username, setUser] = useRecoilState(User);
   const handleLogout=()=>{
-    signOut(auth,provider).then((data)=>{
-      console.log(data)
-    })
     setUser(null);
   }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
+      if (username) {
         setUser(user.displayName);
         navigate('/home')
       } else setUser(null);

@@ -13,7 +13,6 @@ import {GoogleOutlined} from '@ant-design/icons'
 
 const LoginPage = ({ onLogin }) => {
   const navigate=useNavigate();
-  const [user,]=useRecoilState(User)
   const queryClient=useQueryClient();
   const [Creds, setCreds] = useState(true);
   const { data: userData, isLoading, isError } = useQuery(
@@ -58,7 +57,7 @@ const LoginPage = ({ onLogin }) => {
   };
   const handleclick=()=>{
       signInWithPopup(auth,provider).then((data)=>{
-        // console.log(data.user)
+        console.log(data.user)
         onLogin(data.user.displayName)
         if(userData){
           const matchedUser = userData.data.find(element => {
@@ -99,13 +98,7 @@ const LoginPage = ({ onLogin }) => {
     autoComplete="off"
   >
     <Form.Item>
-      {user &&
-      <h2 style={{paddingLeft:'70px',width:"500px"}}>Login as different User</h2>
-      }
-      {!user &&
-        <h2 style={{paddingLeft:'160px'}}>Login</h2>
-
-      }
+      <h2 style={{paddingLeft:'160px'}}>Login</h2>
     </Form.Item>
     <Form.Item
       label="Username"
