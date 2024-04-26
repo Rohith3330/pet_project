@@ -129,7 +129,7 @@ const LoginPage = ({ onLogin }) => {
       }}
     >
       <Button type="primary" htmlType="submit" >
-        Submit
+        Login
       </Button>
     </Form.Item>
     <Form.Item
