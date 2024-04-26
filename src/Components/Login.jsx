@@ -53,7 +53,6 @@ const LoginPage = ({ onLogin }) => {
     console.log('Failed:', errorInfo);
   };
   const handleclick=()=>{
-    try{
       signInWithPopup(auth,provider).then((data)=>{
         console.log(data.user)
         onLogin(data.user.displayName)
@@ -71,11 +70,7 @@ const LoginPage = ({ onLogin }) => {
           navigate('/home')
           setCreds(true);
         }
-      })
-    }
-    catch{
-
-    }
+      }).catch(err=>console.log(err))
   }
   
   return(

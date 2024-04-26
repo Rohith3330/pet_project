@@ -11,7 +11,7 @@ const Search = () => {
         }
     );
     return (
-        <div>
+        <div style={{height:"72vh"}}>
             <EventFilter data={eventData.data}/>
         </div>
     );
