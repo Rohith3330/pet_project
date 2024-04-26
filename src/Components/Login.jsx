@@ -7,9 +7,6 @@ import { useQuery,useQueryClient,useMutation} from 'react-query';
 import {auth,provider}from '../config'
 import {signInWithPopup} from 'firebase/auth'
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
-import { User } from '../user_States/Atoms';
-import {GoogleOutlined} from '@ant-design/icons'
 
 const LoginPage = ({ onLogin }) => {
   const navigate=useNavigate();

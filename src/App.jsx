@@ -41,7 +41,7 @@ const navigate=useNavigate();
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
  
   return (
     <Layout hasSider style={{display:"flex",flexWrap:"wrap"}}>
